@@ -17,7 +17,6 @@ const register = (name, email, password) => async (dispatch) => {
         password,
       }
     );
-    console.log(data);
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     Cookie.set("userInfo", JSON.stringify(data));
   } catch (error) {

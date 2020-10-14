@@ -10,7 +10,9 @@ import SignInScreen from "./Screens/SignInScreen";
 import { useSelector } from "react-redux";
 import RegisterScreen from "./Screens/RegisterScreen";
 import ProductsScreen from "./Screens/ProductsScreen";
-
+import ShippingScreen from "./Screens/ShippingScreen";
+import PaymentScreen from "./Screens/PaymentScreen";
+import PlaceholderScreen from "./Screens/PlaceholderScreen";
 function App() {
   const usersignin = useSelector((state) => state.user);
   const { userInfo } = usersignin;
@@ -30,7 +32,9 @@ function App() {
             <Link to="">amazon</Link>
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart</a>
+            <a href="/cart">Cart</a>
+            {"  "}
+            {"  "}
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
             ) : (
@@ -55,10 +59,13 @@ function App() {
         </aside>
         <main className="main">
           <div className="content">
+            <Route path="/shipping" component={ShippingScreen} />
+            <Route path="/payment" component={PaymentScreen} />
             <Route path="/products" component={ProductsScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/signin" component={SignInScreen} />
             <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/placeorder" component={PlaceholderScreen} />
             <Route path="/" exact component={HomeScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
           </div>

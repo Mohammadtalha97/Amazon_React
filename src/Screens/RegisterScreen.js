@@ -12,9 +12,13 @@ function RegisterScreen(props) {
   const userRegister = useSelector((state) => state.user);
   const { loading, userInfo, error } = userRegister;
 
+  const redirect = props.location.search
+    ? props.location.search.split("=")[1]
+    : "/";
+
   useEffect(() => {
     if (userInfo) {
-      props.history.push("/");
+      props.history.push(redirect);
     }
   }, [userInfo]);
 
@@ -72,12 +76,18 @@ function RegisterScreen(props) {
           </li>
           <li>
             <button type="submit" className="button primary">
-              Sign In
+              Sign Up
             </button>
           </li>
           <li>
             Already Have An Account
-            <Link to="/signin">Sign Up</Link>
+            {/* <Link to="/signin">Sign Up</Link> */}
+            <Link
+              to={redirect === "/" ? "signin" : "signin?redirect=" + redirect}
+              className="button secondary text-center  "
+            >
+              Create Your Amazon Account
+            </Link>
           </li>
         </ul>
       </form>
